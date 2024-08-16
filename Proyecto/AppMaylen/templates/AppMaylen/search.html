@@ -1,0 +1,64 @@
+{% extends "AppMaylen/base.html" %}
+
+{% block main %}
+    <div class="container mt-5">
+
+        <h2>Resultados de la Búsqueda</h2>
+
+        <form method="get" action="{% url 'search' %}">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" name="q" placeholder="Buscar..." value="{{ request.GET.q }}">
+                <button class="btn btn-primary" type="submit">Buscar</button>
+            </div>
+        </form>
+
+        <h3>Cursos</h3>
+
+        <ul class="list-group">
+            {% for curso in cursos %}
+            <li class="list-group-item">
+                <a href="{% url 'curso_detail' curso.pk %}">{{ curso.nombre }}</a>
+            </li>
+            {% empty %}
+            <li class="list-group-item">No se encontraron cursos.</li>
+            {% endfor %}
+        </ul>
+
+        <h3>Estudiantes</h3>
+
+        <ul class="list-group">
+            {% for estudiante in estudiantes %}
+            <li class="list-group-item">
+                <a href="{% url 'estudiante_detail' estudiante.pk %}">{{ estudiante.nombre }}</a>
+            </li>
+            {% empty %}
+            <li class="list-group-item">No se encontraron estudiantes.</li>
+            {% endfor %}
+        </ul>
+
+        <h3>Profesores</h3>
+
+        <ul class="list-group">
+            {% for profesor in profesores %}
+            <li class="list-group-item">
+                <a href="{% url 'profesor_detail' profesor.pk %}">{{ profesor.nombre }}</a>
+            </li>
+            {% empty %}
+            <li class="list-group-item">No se encontraron profesores.</li>
+            {% endfor %}
+        </ul>
+
+        <h3>Entregables</h3>
+
+        <ul class="list-group">
+            {% for entregable in entregables %}
+            <li class="list-group-item">
+                <a href="{% url 'entregable_detail' entregable.pk %}">{{ entregable.nombre }}</a>
+            </li>
+            {% empty %}
+            <li class="list-group-item">No se encontraron entregables.</li>
+            {% endfor %}
+        </ul>
+        
+    </div>
+{% endblock %}

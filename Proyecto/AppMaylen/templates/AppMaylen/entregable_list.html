@@ -1,0 +1,17 @@
+{% extends "AppMaylen/base.html" %}
+
+{% block main %}
+    <div class="container mt-5">
+    
+        <h2>Lista de Entregables</h2>
+    
+        <ul class="list-group">
+            {% for entregable in entregables %}
+            <li class="list-group-item">{{ entregable.nombre }}</li>
+            {% empty %}
+            <li class="list-group-item">No hay entregables disponibles.</li>
+            {% endfor %}
+        </ul>
+
+    </div>
+{% endblock %}

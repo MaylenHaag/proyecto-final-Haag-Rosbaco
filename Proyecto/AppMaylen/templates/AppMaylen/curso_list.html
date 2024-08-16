@@ -1,0 +1,19 @@
+{% extends "AppMaylen/base.html" %}
+
+{% load static %}
+
+{% block main %}
+    <div class="container mt-5">
+    
+        <h2>Lista de Cursos</h2>
+    
+        <ul class="list-group">
+            {% for curso in cursos %}
+            <li class="list-group-item">{{ curso.nombre }}</li>
+            {% empty %}
+            <li class="list-group-item">No hay cursos disponibles.</li>
+            {% endfor %}    
+        </ul>
+
+    </div>
+{% endblock %}

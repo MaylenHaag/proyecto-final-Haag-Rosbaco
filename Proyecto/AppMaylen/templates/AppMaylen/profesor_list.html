@@ -1,0 +1,17 @@
+{% extends "AppMaylen/base.html" %}
+
+{% block main %}
+    <div class="container mt-5">
+    
+        <h2>Lista de Profesores</h2>
+    
+        <ul class="list-group">
+            {% for profesor in profesores %}
+            <li class="list-group-item">{{ profesor.nombre }}</li>
+            {% empty %}
+            <li class="list-group-item">No hay profesores disponibles.</li>
+            {% endfor %}
+        </ul>
+
+    </div>
+{% endblock %}

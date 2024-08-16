@@ -1,0 +1,7 @@
+__pychache__/
+*.pyc
+
+Pipfile
+Pipfile.lock
+
+db.sqlite3
