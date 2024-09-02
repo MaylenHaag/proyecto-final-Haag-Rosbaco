@@ -30,6 +30,7 @@
                         <li class="nav-item"><a class="nav-link" href="{% url 'profesor_list' %}">Profesores</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'estudiante_list' %}">Estudiantes</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'entregable_list' %}">Entregables</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About Us</a></li>
                         
                         {% if request.user.is_authenticated %}
                             <img src="{{ request.user.avatar.imagen.url }}" alt="" height="35px">
@@ -37,7 +38,12 @@
                                 <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">{{ request.user.username }}</a>
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
                                     <li><a class="dropdown-item" href="{% url 'EditarUsuario' %}">Editar sesión</a></li>
-                                    <li><a class="dropdown-item" href="{% url 'Logout' %}">Cerrar sesión</a></li>
+                                    <li class="nav-item">
+                                        <form method="POST" action="{% url 'Logout' %}" style="display: inline;">
+                                            {% csrf_token %}
+                                            <button type="submit" class="dropdown-item" style="background: none; border: none;">Cerrar sesión</button>
+                                        </form>
+                                    </li>                                    
                                 </ul> 
                             </li>
                         {% else %}
@@ -69,7 +75,9 @@
                             </div> -->
                         </div>
                     </div>
-                    <div class="col-xl-5 col-xxl-6 d-none d-xl-block text-center"><img class="img-fluid rounded-3 my-5" src="./static/AppMaylen/assets/img/logo.png" alt="..." /></div>
+                    <div class="col-xl-5 col-xxl-6 d-none d-xl-block text-center">
+                        <img class="img-fluid rounded-3 my-5" src="{% static 'AppMaylen/assets/img/logo.png' %}" alt="Logo" />
+                    </div>
                 </div>
             </div>
         </header>

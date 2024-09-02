@@ -11,5 +11,5 @@ urlpatterns = [
     path('profesores/', views.ProfesorListView.as_view(), name='profesor_list'),
     path('crear-entregable/', views.EntregableCreateView.as_view(), name='create_entregable'),
     path('entregables/', views.EntregableListView.as_view(), name='entregable_list'),
-    path('about/', views.AboutUsView.as_view(), name="aboutus")
+    path('about/', views.AboutUsView.as_view(), name="about")
 ]
