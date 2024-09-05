@@ -7,6 +7,10 @@
     
         <h2>Lista de Cursos</h2>
     
+        {% if user.is_superuser %}
+                    <a href="{% url 'create_curso' %}">Crear curso</a>
+        {% endif %}
+
         <ul class="list-group">
             {% for curso in cursos %}
             <li class="list-group-item">

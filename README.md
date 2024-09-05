@@ -4,7 +4,7 @@ Se que no esta terminado y tiene muchas cosas para mejorar, si no cumple con lo 
 
 No puedo encontrarle el problema al logout asi que voy a dejarlo comentado, para no tener un boton que no funcione.
 
-A continuacion dejo un link a mi drive donde subi 3 videos que en total suman 7:43min.
+A continuacion dejo un link a mi drive donde subi los videos explicando y mostrando el funcionameinto de la pagina:
 https://drive.google.com/drive/folders/1SKyEZVd9kJp5yTlKos4bT1EPtGIxlUnI?usp=share_link
 
 Link al excel con las pruebas:

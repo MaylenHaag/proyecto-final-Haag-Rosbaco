@@ -5,6 +5,10 @@
     
         <h2>Lista de Profesores</h2>
     
+        {% if user.is_superuser or user.is_staff%}
+            <a href="{% url 'create_profesor' %}">Agregar profesor</a>
+        {% endif %}
+        
         <ul class="list-group">
             {% for profesor in profesores %}
             <li class="list-group-item">
