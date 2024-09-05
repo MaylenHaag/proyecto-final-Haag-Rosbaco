@@ -1,10 +1,13 @@
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, TemplateView
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic.edit import CreateView, DeleteView, UpdateView
+from django.views.generic.detail import DetailView
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Curso, Estudiante, Profesor, Entregable
+from .models import Curso, Profesor, Entregable
 from .forms import CursoForm, EstudianteForm, ProfesorForm, EntregableForm
+from users.models import Estudiante
+
 
 # Vista para la página principal con formularios y listas
 def index(request):
@@ -45,17 +48,23 @@ def index(request):
 def about(request) :
     return render(request, "AppMaylen/about.html")
 
+
+
 # Vista para crear un curso
 class CursoCreateView(LoginRequiredMixin, CreateView):
     model = Curso
     form_class = CursoForm
     template_name = 'AppMaylen/create_curso.html'
-    success_url = reverse_lazy('curso_list')
+    success_url = reverse_lazy('lista_curso')
+
+    def form_valid(self, form):
+        form.instance.autor = self.request.user 
+        return super().form_valid(form)
 
 # Vista para listar cursos
 class CursoListView(ListView):
     model = Curso
-    template_name = "AppMaylen/curso_list.html"
+    template_name = "AppMaylen/lista_curso.html"
     context_object_name = 'cursos'
 
     def get(self, request, *args, **kwargs):
@@ -66,45 +75,61 @@ class CursoListView(ListView):
         return super().get(request, *args, **kwargs)
 
 
-# Vista para crear un estudiante
-class EstudianteCreateView(LoginRequiredMixin, CreateView):
-    model = Estudiante
-    form_class = EstudianteForm
-    template_name = 'AppMaylen/create_estudiante.html'
-    success_url = reverse_lazy('estudiante_list')
+class CursoDetailView(DetailView):
+    model = Curso
+    template_name = "AppMaylen/detalle_curso.html"
 
-# Vista para listar estudiantes
-class EstudianteListView(ListView):
-    model = Estudiante
-    template_name = 'AppMaylen/estudiante_list.html'
-    context_object_name = 'estudiantes'
+
+class CursoUpdateView(UpdateView):
+    model = Curso
+    template_name = "AppMaylen/editar_curso.html"
+    success_url = reverse_lazy('lista_curso')
+    fields = ['nombre', 'camada', 'horario', 'imagen']
+
+
+class CursoDeleteView(DeleteView):
+    model = Curso
+    template_name = "AppMaylen/borrar_curso.html"
+    success_url = reverse_lazy("lista_curso")
+
+
+
 
 # Vista para crear un profesor
 class ProfesorCreateView(LoginRequiredMixin, CreateView):
     model = Profesor
     form_class = ProfesorForm
     template_name = 'AppMaylen/create_profesor.html'
-    success_url = reverse_lazy('profesor_list')
+    success_url = reverse_lazy('lista_profesor')
 
 # Vista para listar profesores
 class ProfesorListView(ListView):
     model = Profesor
-    template_name = 'AppMaylen/profesor_list.html'
+    template_name = 'AppMaylen/lista_profesor.html'
     context_object_name = 'profesores'
 
-# Vista para crear un entregable
-class EntregableCreateView(LoginRequiredMixin, CreateView):
-    model = Entregable
-    form_class = EntregableForm
-    template_name = 'AppMaylen/create_entregable.html'
-    success_url = reverse_lazy('entregable_list')
+class ProfesorDetailView(DetailView):
+    model = Profesor
+    template_name = "AppMaylen/detalle_profesor.html"
 
-# Vista para listar entregables
-class EntregableListView(ListView):
-    model = Entregable
-    template_name = 'AppMaylen/entregable_list.html'
-    context_object_name = 'entregables'
+
+class ProfesorUpdateView(UpdateView):
+    model = Profesor
+    template_name = "AppMaylen/editar_profesor.html"
+    success_url = reverse_lazy('lista_profesor')
+    fields = ['nombre', 'apellido', 'email', 'imagen']
+
+class ProfesorDeleteView(DeleteView):
+    model = Profesor
+    template_name = "AppMaylen/borrar_profesor.html"
+    success_url = reverse_lazy("lista_profesor")
+
 
 
 class AboutUsView(TemplateView):
     template_name = "AppMaylen/about.html"
+
+class ContactUsView(TemplateView):
+    template_name = "AppMaylen/contact.html"
+
+

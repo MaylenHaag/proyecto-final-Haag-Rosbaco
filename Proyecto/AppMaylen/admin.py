@@ -1,5 +1,6 @@
 from django.contrib import admin
-from AppMaylen.models import Curso, Estudiante
+from AppMaylen.models import Curso
+from users.models import Estudiante
 
 # Register your models here.
 admin.site.register(Curso)

@@ -1,0 +1,34 @@
+{% extends "AppMaylen/base.html" %}
+
+{% block main %}
+    <div class="container mt-5">
+    
+        <h2>Lista de Estudiantes</h2>
+    
+        <ul class="list-group">
+            {% for estudiante in estudiantes %}
+            <li class="list-group-item">
+                <strong>{{ estudiante.apellido }}, {{ estudiante.nombre }}</strong>
+                <br>
+                {% if user.is_superuser %}
+                    <a href="{% url 'detalle_estudiante' estudiante.id %}">Ver más</a>
+                    <a href="{% url 'editar_estudiante' estudiante.id %}">Editar</a>
+                    <a href="{% url 'borrar_estudiante' estudiante.id %}">Borrar</a>
+                {% elif user.is_staff %}
+                    <a href="{% url 'detalle_estudiante' estudiante.id %}">Ver más</a>
+                    <a href="{% url 'editar_estudiante' estudiante.id %}">Editar</a>
+                {% else %}
+                    <a href="{% url 'detalle_estudiante' estudiante.id %}">Ver más</a>
+                {% endif %}
+            </li>
+            {% empty %}
+            <li class="list-group-item">No hay estudiantes.</li>
+            {% if user.is_superuser %}
+                <a href="{% url 'create_estudiante' %}">Agregar estudiante</a>
+            {% endif %}
+            {% endfor %}    
+        </ul>
+
+    </div>
+{% endblock %}
+

@@ -9,4 +9,11 @@ class Avatar(models.Model) :
         return f"{self.user} - {self.imagen}"
     
     
-        
+
+class Estudiante (models.Model) :
+    nombre = models.CharField(max_length=40)
+    apellido = models.CharField(max_length=20)
+    email = models.EmailField(max_length=40)
+
+    class Meta:
+        db_table = 'users_estudiante'

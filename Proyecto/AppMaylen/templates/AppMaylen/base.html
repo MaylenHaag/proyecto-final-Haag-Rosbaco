@@ -26,10 +26,9 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item"><a class="nav-link" href="{% url 'index' %}">Inicio</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'curso_list' %}">Cursos</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'profesor_list' %}">Profesores</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'estudiante_list' %}">Estudiantes</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'entregable_list' %}">Entregables</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'lista_curso' %}">Cursos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'lista_profesor' %}">Profesores</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'lista_estudiantes' %}">Estudiantes</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About Us</a></li>
                         
                         {% if request.user.is_authenticated %}
@@ -37,7 +36,7 @@
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">{{ request.user.username }}</a>
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
-                                    <li><a class="dropdown-item" href="{% url 'EditarUsuario' %}">Editar sesión</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'EditarUsuario' %}">Editar usuario</a></li>
                                     <li class="nav-item">
                                         <form method="POST" action="{% url 'Logout' %}" style="display: inline;">
                                             {% csrf_token %}
@@ -91,11 +90,11 @@
                 <div class="row align-items-center justify-content-between flex-column flex-sm-row">
                     <div class="col-auto"><div class="small m-0 text-white">Copyright &copy; Your Website 2024</div></div>
                     <div class="col-auto">
-                        <a class="link-light small" href="#!">Privacy</a>
+                        <a class="link-light small" href="https://www.instagram.com/culturalinglesamc?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="><i class="bi bi-instagram"></i></a>
                         <span class="text-white mx-1">&middot;</span>
-                        <a class="link-light small" href="#!">Terms</a>
+                        <a class="link-light small" href="https://www.facebook.com/culturalinglesa.mc"><i class="bi bi-facebook"></i></a>
                         <span class="text-white mx-1">&middot;</span>
-                        <a class="link-light small" href="#!">Contact</a>
+                        <a class="link-light small" href="{% url 'contact' %}">Contact Us</a>
                     </div>
                 </div>
             </div>

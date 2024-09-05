@@ -5,9 +5,47 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import PasswordChangeView, LogoutView
 from django.urls import reverse_lazy
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic import ListView
+from django.views.generic.detail import DetailView
+from AppMaylen.forms import EstudianteForm
+
+from .models import Estudiante
 
 from users.forms import UserRegisterForm, UserEditForm
 from users.models import Avatar
+
+
+
+# Vista para crear un estudiante
+class EstudianteCreateView(LoginRequiredMixin, CreateView):
+    model = Estudiante
+    form_class = EstudianteForm
+    template_name = 'AppMaylen/create_estudiante.html'
+    success_url = reverse_lazy('lista_estudiantes')
+
+# Vista para listar estudiantes
+class EstudianteListView(ListView):
+    model = Estudiante
+    template_name = 'AppMaylen/lista_estudiantes.html'
+    context_object_name = 'estudiantes'
+
+
+class EstudianteDeleteView(DeleteView):
+    model = Estudiante
+    template_name = "AppMaylen/borrar_estudiante.html"
+    success_url = reverse_lazy("lista_estudiantes")
+
+
+class EstudianteUpdateView(UpdateView):
+    model = Estudiante
+    template_name = "AppMaylen/editar_estudiante.html"
+    success_url = reverse_lazy("lista_estudiantes")
+    fields = ["nombre", "apellido"]
+
+class EstudianteDetailView(DetailView):
+    model = Estudiante
+    template_name = "AppMaylen/detalle_estudiante.html"
 
 
 def login_request(request) :

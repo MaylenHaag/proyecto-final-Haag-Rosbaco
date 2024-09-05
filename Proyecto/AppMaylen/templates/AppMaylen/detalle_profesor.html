@@ -1,0 +1,27 @@
+{% extends "AppMaylen/base.html" %}
+
+{% load static %}
+
+{% block main %}
+    <div class="container mt-5">
+    
+        <h2>Detalle del Profesor</h2>
+    
+        <p>Nombre: <i>{{profesor.nombre}}</i></p>
+        <p>Apellido: <i>{{profesor.apellido}}</i></p>
+        <p>Email: <i>{{profesor.email}}</i></p>
+
+        {% if profesor.imagen %}
+            <div>
+                <img src="{{ profesor.imagen.url }}" alt="{{ profesor.nombre }}" style="max-width: 300px; max-height: 300px;">
+            </div>
+        {% else %}
+            <p>No hay imagen disponible</p>
+        {% endif %}
+
+        <p>
+            <a href="{% url 'lista_profesor' %}">Regresar</a>
+        </p>
+
+    </div>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends "AppMaylen/base.html" %}
+
+{% block main %}
+    <div class="container mt-5">
+    
+        <h2>Lista de Profesores</h2>
+    
+        <ul class="list-group">
+            {% for profesor in profesores %}
+            <li class="list-group-item">
+                <strong>{{ profesor.apellido }}, {{ profesor.nombre }}</strong>
+                {% if profesor.imagen %}
+                    <div>
+                        <img src="{{ profesor.imagen.url }}" alt="{{ profesor.nombre }}" style="max-width: 200px; max-height: 200px;">
+                    </div>
+                {% else %}
+                    <p>No hay imagen disponible</p>
+                {% endif %}
+                {% if user.is_superuser %}
+                    <a href="{% url 'detalle_profesor' profesor.id %}">Ver más</a>
+                    <a href="{% url 'editar_profesor' profesor.id %}">Editar</a>
+                    <a href="{% url 'borrar_profesor' profesor.id %}">Borrar</a>
+                {% elif user.is_staff %}
+                    <a href="{% url 'detalle_profesor' profesor.id %}">Ver más</a>  
+                    <a href="{% url 'editar_profesor' profesor.id %}">Editar</a>    
+                {% else %}  
+                    <a href="{% url 'detalle_profesor' profesor.id %}">Ver más</a>
+                {% endif %}
+            </li>
+            {% empty %}
+            <li class="list-group-item">No hay profesores.</li>
+            {% if user.is_superuser or user.is_staff%}
+            <a href="{% url 'create_profesor' %}">Agregar profesor</a>
+            {% endif %}
+            {% endfor %}    
+        </ul>
+
+    </div>
+{% endblock %}
+

@@ -1,15 +1,24 @@
 from django.urls import path
 from AppMaylen import views
+from django.contrib import admin
+from django.urls import path
+
 
 urlpatterns = [
     path('', views.index, name='index'),
+
     path('crear-curso/', views.CursoCreateView.as_view(), name='create_curso'),
-    path('cursos/', views.CursoListView.as_view(), name='curso_list'),
-    path('crear-estudiante/', views.EstudianteCreateView.as_view(), name='create_estudiante'),
-    path('estudiantes/', views.EstudianteListView.as_view(), name='estudiante_list'),
+    path('cursos/', views.CursoListView.as_view(), name='lista_curso'),
+    path('detalle-curso/<pk>', views.CursoDetailView.as_view(), name='detalle_curso'),
+    path('curso/<pk>/editar', views.CursoUpdateView.as_view(), name='editar_curso'),
+    path('curso/<pk>/borrar', views.CursoDeleteView.as_view(), name='borrar_curso'),
+
     path('crear-profesor/', views.ProfesorCreateView.as_view(), name='create_profesor'),
-    path('profesores/', views.ProfesorListView.as_view(), name='profesor_list'),
-    path('crear-entregable/', views.EntregableCreateView.as_view(), name='create_entregable'),
-    path('entregables/', views.EntregableListView.as_view(), name='entregable_list'),
-    path('about/', views.AboutUsView.as_view(), name="about")
+    path('profesores/', views.ProfesorListView.as_view(), name='lista_profesor'),
+    path('detalle-profesor/<pk>', views.ProfesorDetailView.as_view(), name='detalle_profesor'),
+    path('profesor/<pk>/editar', views.ProfesorUpdateView.as_view(), name='editar_profesor'),
+    path('profesor/<pk>/borrar', views.ProfesorDeleteView.as_view(), name='borrar_profesor'),
+
+    path('about/', views.AboutUsView.as_view(), name="about"),
+    path('contact/', views.ContactUsView.as_view(), name="contact"),
 ]
