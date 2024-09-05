@@ -27,9 +27,7 @@
             </li>
             {% empty %}
             <li class="list-group-item">No hay estudiantes.</li>
-            {% if user.is_superuser %}
-                <a href="{% url 'create_estudiante' %}">Agregar estudiante</a>
-            {% endif %}
+        
             {% endfor %}    
         </ul>
 

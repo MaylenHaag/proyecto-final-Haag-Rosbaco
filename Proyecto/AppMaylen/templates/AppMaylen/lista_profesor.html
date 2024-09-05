@@ -33,9 +33,7 @@
             </li>
             {% empty %}
             <li class="list-group-item">No hay profesores.</li>
-            {% if user.is_superuser or user.is_staff%}
-            <a href="{% url 'create_profesor' %}">Agregar profesor</a>
-            {% endif %}
+        
             {% endfor %}    
         </ul>
 

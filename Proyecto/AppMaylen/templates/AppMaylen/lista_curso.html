@@ -38,10 +38,6 @@
             {% empty %}
             <li class="list-group-item">No hay cursos disponibles.</li>
 
-                {% if user.is_superuser %}
-                    <a href="{% url 'create_curso' %}">Crear curso</a>
-                {% endif %}
-
             {% endfor %}    
         </ul>
 
